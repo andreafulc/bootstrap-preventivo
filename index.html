@@ -32,42 +32,110 @@
 </header>
 
  <!-- Main -->
- <body class="bg-light d-flex flex-column min-vh-100">
+ <main class="d-flex flex-column min-vh-100">
     <!-- container -->
     <div class="container">
         
-<div class="row">
-        <!-- inscription card -->
-        <div class="card text-center my-3 col-12 col-md-8 ms-4 mt-2">
-          
-          </div>
+        <div class="row">
+            <!-- inscription card -->
+            <div class="col-12 col-lg-9 pe-4 mt-3">
+                    <h1>Richiesta Preventivo</h1>
+                    <p>Compila il form per richiedere un preventivo per i nostri servizi di sviluppo</p>
+                        <form id="ticketForm" action="">
+                            <label for="name" class="form-label">Nome</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="userName"
+                            autocomplete="off"
+                            />
+            
+                            <label for="surname" class="form-label">Cognome</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="surname"
+                            autocomplete="off"
+                            />
+            
+                            <label for="mail" class="form-label">Mail</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="mail"
+                            autocomplete="off"
+                            />
+            
+                            <label for="age" class="form-label">Tipo di lavoro</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="age"
+                            autocomplete="off"
+                            />
+            
+                            <div class="mb-3 py-3">
+                                <label for="copie" class="form-label">Textarea con Bootstrap 5</label>
+                                <textarea class="form-control" id="note" rows="3"
+                                autocomplete="off" ></textarea>
+                                
+                            </div>
+            
+                            <label for="user" class="form-label">Codice Promozionale</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="user"
+                            autocomplete="off"
+                            />
 
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Accetto la Privacy Policy
+                                </label>
+                              </div>
+            
+                            
+
+                            
+
+                            <div class="row text-center">
+                                <div class="col-12 col-md-5">
+                                    <button type="submit" class="btn btn-primary mt-5 mx-5">Calcola Preventivo</button>
+                                </div>
+                                <div class="col-12 col-md-5 mt-5 fw-bold fs-5">
+                                Prezzo finale
+                                <h2 class="class"> € </h2>
+                                </div>
+                            </div>
+
+                        </form>
+            </div>
+                    <!-- end inscription card -->
+
+            <!-- info card -->
+            <div class="card col-12 col-lg-3 my-4 align-self-start">
+                    <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">I nostri contatti</h5>
+                    <p class="card-text">Se hai bisogno di aiuto puoi contattarci</p>
+                </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">hgelp@boolfactory.test</li>
+                        <li class="list-group-item">+1122334455</li>
+                    </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Help</a>
+                </div>
+
+            </div>
         </div>
-        <!-- end inscription card -->
-        <!-- login card -->
-        <div class="card my-3 col-12 col-md-3 ms-4 mt-2 float-md-end">
-         <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">I nostri contatti</h5>
-    <p class="card-text">Se hai bisogno di aiuto puoi contattarci</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">hgelp@boolfactory.test</li>
-    <li class="list-group-item">+1122334455</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Help desk</a>
-    
-  </div>
-</div>
-                </form>
-            </div>
-            </div>
-          </div>
-        <!-- end login card -->
+    </div>
+        <!-- end info card -->
 
     
-  </body>
+ </main>
 
   <!-- Footer -->
     <footer class="bg-dark text-white text-center fw-lighter fs-6 position-static mt-auto">
