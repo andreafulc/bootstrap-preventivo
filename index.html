@@ -50,7 +50,7 @@
                             autocomplete="off"
                             />
             
-                            <label for="surname" class="form-label">Cognome</label>
+                            <label for="surname" class="form-label pt-3">Cognome</label>
                             <input
                             type="text"
                             class="form-control"
@@ -58,7 +58,7 @@
                             autocomplete="off"
                             />
             
-                            <label for="mail" class="form-label">Mail</label>
+                            <label for="mail" class="form-label pt-3">Mail</label>
                             <input
                             type="text"
                             class="form-control"
@@ -66,22 +66,22 @@
                             autocomplete="off"
                             />
             
-                            <label for="age" class="form-label">Tipo di lavoro</label>
-                            <input
-                            type="text"
-                            class="form-control"
-                            id="age"
-                            autocomplete="off"
-                            />
+                                <label for="genre" class="form-label pt-3">Tipo di lavoro</label>
+                                <select class="form-select" aria-label="Seleziona il tipo di lavoro" id="country">
+                                <option selected>Seleziona il tipo di lavoro</option>
+                                <option value="1">Thriller</option>
+                                <option value="2">Noir</option>
+                                <option value="3">Fantasy</option>
+                                </select>
+                            
             
-                            <div class="mb-3 py-3">
-                                <label for="copie" class="form-label">Textarea con Bootstrap 5</label>
+                            
+                                <label for="copie" class="form-label pt-3">Textarea con Bootstrap 5</label>
                                 <textarea class="form-control" id="note" rows="3"
                                 autocomplete="off" ></textarea>
                                 
-                            </div>
             
-                            <label for="user" class="form-label">Codice Promozionale</label>
+                            <label for="user" class="form-label pt-3">Codice Promozionale (opzionale)</label>
                             <input
                             type="text"
                             class="form-control"
@@ -104,7 +104,7 @@
                                 <div class="col-12 col-md-5">
                                     <button type="submit" class="btn btn-primary mt-5 mx-5">Calcola Preventivo</button>
                                 </div>
-                                <div class="col-12 col-md-5 mt-5 fw-bold fs-5">
+                                <div class="col-12 col-md-5 mt-4 fw-bold fs-5">
                                 Prezzo finale
                                 <h2 class="class"> € </h2>
                                 </div>
@@ -116,7 +116,7 @@
 
             <!-- info card -->
             <div class="card col-12 col-lg-3 my-4 align-self-start p-0">
-                    <img src="./img/pic.png" class="card-img-top rounded" alt="...">
+                    <img src="./img/pic.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">I nostri contatti</h5>
                     <p class="card-text">Se hai bisogno di aiuto puoi contattarci:</p>
@@ -126,7 +126,7 @@
                         <li class="list-group-item">+1122334455</li>
                     </ul>
                 <div class="card-body">
-                    <a href="#" class="card-link">Help</a>
+                    <a href="#" class="card-link">Help desk</a>
                 </div>
 
             </div>
