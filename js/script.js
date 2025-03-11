@@ -108,8 +108,18 @@ if (userpromo !== "") {
     }
 }
     //result in page
-    resultElement.innerHTML = message;
+    //resultElement.innerHTML = message;
 
+    //now the price is bold with decimal small
+    let [integerPart, decimalPart] = message.split('.');
+
+    let formattedMessage = `<span class="fw-bold">${integerPart}</span>`;
+
+    if (decimalPart) {
+        formattedMessage += `<span class="small">.${decimalPart}</span>`;
+    }
+
+    resultElement.innerHTML = formattedMessage;
 
 
 
