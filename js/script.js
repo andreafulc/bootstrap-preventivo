@@ -6,6 +6,8 @@ const userMailInput = document.getElementById("mail");
 const userWorkTipeInput = document.getElementById("workType");
 const userInfoInput = document.getElementById("note");
 const userPromoInput = document.getElementById("userPromo");
+//take the element for print in page
+const resultElement = document.getElementById("result");
 
 // here is the submit event
 userForm.addEventListener("submit", handleUserForm);
@@ -19,7 +21,8 @@ function handleUserForm(event) {
     const usermail = userMailInput.value;
     const userwork = userWorkTipeInput.value.split(","); //split for array
     const userinfo = userInfoInput.value;
-    const userpromo = userPromoInput.value;
+    //trim remove spaces
+    const userpromo = userPromoInput.value.trim();
 
     console.log(`${username} ${usersurname} ${usermail} ${userwork} ${userinfo} ${userpromo}`);
     
@@ -41,8 +44,35 @@ function handleUserForm(event) {
     } else if (userwork == "3") {
         totPrice = timeWork * price.rev;
     } else 
-        console.log("seleziona lavoro");
+        console.log("seleziona voce valida");
+
+    let officialPrice = totPrice.toFixed(2);
         
-    console.log(`Costo totale: ${totPrice.toFixed(2)}€`);
+    console.log(`Costo totale: ${officialPrice}€`);
+
+    const promoCodes = ["YHDNU32", "JANJC63",  "PWKCN25", "SJDPO96", "POCIE24"]
+
+    let salePrice = officialPrice;
+
+    //apply discount
+
+    if (promoCodes.includes(userpromo)) {
+        salePrice = officialPrice - (officialPrice * 0.25);
+        ultimateSalePrice = salePrice.toFixed(2);
+        console.log(ultimateSalePrice);
+        
+        message = `€ ${ultimateSalePrice}`;
+    } else {
+        message = `€ ${officialPrice}`;
+    }
+
+    //result in page
+    resultElement.innerHTML = message;
+
+
+
+
+    //clean the input
+    userForm.reset();
 
 }
