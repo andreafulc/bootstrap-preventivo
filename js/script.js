@@ -21,3 +21,18 @@ console.log(userInfoInput);
 const userPromoInput = document.getElementById("userPromo");
 console.log(userPromoInput);
 
+//here is the submit event
+
+userForm.addEventListener("submit", handleUserForm);
+
+
+//////////////////////////////////////////////////////////
+//function
+
+
+function handleUserForm(event) {
+    event.preventDefault();
+    console.log("userform");
+    
+    
+}
