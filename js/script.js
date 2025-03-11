@@ -33,6 +33,16 @@ userForm.addEventListener("submit", handleUserForm);
 function handleUserForm(event) {
     event.preventDefault();
     console.log("userform");
+    const username = userNameInput.value;
+    const usersurname = userSurnameInput.value;
+    const usermail = userMailInput.value;
+    const userwork = userWorkTipeInput.value;
+    const userinfo = userInfoInput.value;
+    const userpromo = userPromoInput.value;
+
+    const allData = `${username} ${usersurname} ${usermail} ${userwork} ${userinfo} ${userpromo}`;
+    console.log(allData);
     
     
+
 }
