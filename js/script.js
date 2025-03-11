@@ -12,6 +12,28 @@ const privacyCheckbox = document.getElementById("flexCheckDefault");
 const codeElement = document.getElementById("error");
 
 
+//here is the dinamic select
+
+const optionsData = {
+    "1": "Sviluppo backend",
+    "2": "Sviluppo frontend",
+    "3": "analisi progettuale"
+};
+
+const selectElement = document.getElementById('workType');
+
+for (const[key, value] of Object.entries(optionsData)) {
+    //create new element
+    const option = document.createElement("option");
+    //value of the option is 1, 2, 3 
+    option.value = key;
+    //text visible
+    option.textContent = value;
+    //add oprion to select
+    selectElement.appendChild(option)
+}
+
+
 // here is the submit event
 userForm.addEventListener("submit", handleUserForm);
 
@@ -75,13 +97,14 @@ if (userpromo !== "") {
         
         message = `€ ${ultimateSalePrice}`;
     } else {
-        codeElement.innerHTML = "Seleziona un codice valido";
+        codeElement.innerHTML = "Codice sconto errato";
+    
+    // // Auto-refresh the page after 2 seconds
+    // setTimeout(() => location.reload(), 2000);
 
-        // Auto-refresh the page after 2 seconds
-        setTimeout(() => location.reload(), 2000);
-
-        //stop the run
-        return;
+    // //stop the run
+    // return;
+        
     }
 }
     //result in page
