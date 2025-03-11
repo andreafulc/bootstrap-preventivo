@@ -53,9 +53,10 @@ function handleUserForm(event) {
     const promoCodes = ["YHDNU32", "JANJC63",  "PWKCN25", "SJDPO96", "POCIE24"]
 
     let salePrice = officialPrice;
-
+    let message = `€ ${officialPrice}`;
     //apply discount
-
+    
+if (userpromo !== "") {
     if (promoCodes.includes(userpromo)) {
         salePrice = officialPrice - (officialPrice * 0.25);
         ultimateSalePrice = salePrice.toFixed(2);
@@ -63,9 +64,9 @@ function handleUserForm(event) {
         
         message = `€ ${ultimateSalePrice}`;
     } else {
-        message = `€ ${officialPrice}`;
+        alert("inserisci un codice valido");
     }
-
+}
     //result in page
     resultElement.innerHTML = message;
 
