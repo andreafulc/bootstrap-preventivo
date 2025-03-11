@@ -8,6 +8,9 @@ const userInfoInput = document.getElementById("note");
 const userPromoInput = document.getElementById("userPromo");
 //take the element for print in page
 const resultElement = document.getElementById("result");
+const privacyCheckbox = document.getElementById("flexCheckDefault");
+const codeElement = document.getElementById("error");
+
 
 // here is the submit event
 userForm.addEventListener("submit", handleUserForm);
@@ -15,6 +18,14 @@ userForm.addEventListener("submit", handleUserForm);
 //function
 function handleUserForm(event) {
     event.preventDefault();
+
+
+//Pryvacy check
+
+if (!privacyCheckbox.checked){
+    alert(" ricorda di accettare la privacy policy prima di procedere");
+    return;
+}
 
     const username = userNameInput.value;
     const usersurname = userSurnameInput.value;
@@ -46,7 +57,7 @@ function handleUserForm(event) {
     } else 
         console.log("seleziona voce valida");
 
-    let officialPrice = totPrice.toFixed(2);
+    let officialPrice = parseFloat(totPrice.toFixed(2));
         
     console.log(`Costo totale: ${officialPrice}€`);
 
@@ -59,12 +70,18 @@ function handleUserForm(event) {
 if (userpromo !== "") {
     if (promoCodes.includes(userpromo)) {
         salePrice = officialPrice - (officialPrice * 0.25);
-        ultimateSalePrice = salePrice.toFixed(2);
+        ultimateSalePrice = parseFloat(salePrice.toFixed(2));
         console.log(ultimateSalePrice);
         
         message = `€ ${ultimateSalePrice}`;
     } else {
-        alert("inserisci un codice valido");
+        codeElement.innerHTML = "Seleziona un codice valido";
+
+        // Auto-refresh the page after 2 seconds
+        setTimeout(() => location.reload(), 2000);
+
+        //stop the run
+        return;
     }
 }
     //result in page

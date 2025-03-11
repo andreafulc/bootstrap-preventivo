@@ -60,7 +60,7 @@
             
                             <label for="mail" class="form-label pt-3">Mail</label>
                             <input
-                            type="text"
+                            type="email"
                             class="form-control"
                             id="mail"
                             autocomplete="off"
@@ -101,13 +101,15 @@
                             
 
                             <div class="row text-center">
-                                <div class="col-12 col-md-5">
+                                <div class="col-12 col-md-6">
                                     <button type="submit" class="btn btn-primary mt-5 mx-5">Calcola Preventivo</button>
                                 </div>
-                                <div class="col-12 col-md-5 mt-4 fw-bold fs-5">
+                                <div class="col-12 col-md-6 mt-4 fw-bold fs-5">
                                 Prezzo finale
-                                <h2 id="result">  </h2>
+                                <h2 id="result"></h2>
                                 </div>
+
+                                <h3 id="error" class="text-danger m-4"></h3>
                             </div>
 
                         </form>
