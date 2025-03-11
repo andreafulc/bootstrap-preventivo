@@ -1,48 +1,48 @@
-//Take all the element
-
+// Take all the element
 const userForm = document.getElementById("ticketForm");
-console.log(userForm);
-
 const userNameInput = document.getElementById("userName");
-console.log(userNameInput);
-
 const userSurnameInput = document.getElementById("userSurname");
-console.log(userSurnameInput);
-
 const userMailInput = document.getElementById("mail");
-console.log(userMailInput);
-
 const userWorkTipeInput = document.getElementById("workType");
-console.log(userWorkTipeInput);
-
 const userInfoInput = document.getElementById("note");
-console.log(userInfoInput);
-
 const userPromoInput = document.getElementById("userPromo");
-console.log(userPromoInput);
 
-//here is the submit event
-
+// here is the submit event
 userForm.addEventListener("submit", handleUserForm);
 
-
-//////////////////////////////////////////////////////////
 //function
-
-
 function handleUserForm(event) {
     event.preventDefault();
-    console.log("userform");
+
     const username = userNameInput.value;
     const usersurname = userSurnameInput.value;
     const usermail = userMailInput.value;
-    const userwork = userWorkTipeInput.value;
+    const userwork = userWorkTipeInput.value.split(","); //split for array
     const userinfo = userInfoInput.value;
     const userpromo = userPromoInput.value;
 
-    const allData = `${username} ${usersurname} ${usermail} ${userwork} ${userinfo} ${userpromo}`;
-    console.log(allData);
+    console.log(`${username} ${usersurname} ${usermail} ${userwork} ${userinfo} ${userpromo}`);
     
-    
+   //working hours as written in the quest are 10
+    const timeWork = 10;
+    const price = {
+        back: 20.50,
+        front: 15.30,
+        rev: 33.60
+    };
+    let totPrice = 0; 
+
+    //control price
+
+    if (userwork == "1") {
+        totPrice = timeWork * price.back;
+    } else if (userwork == "2") {
+        totPrice = timeWork * price.front;
+    } else if (userwork == "3") {
+        totPrice = timeWork * price.rev;
+    } else 
+        console.log("seleziona lavoro");
+        
+    console.log(`Costo totale: ${totPrice.toFixed(2)}€`);
 
 }
