@@ -20,18 +20,20 @@ const optionsData = {
     "3": "analisi progettuale"
 };
 
-const selectElement = document.getElementById('workType');
 
-for (const[key, value] of Object.entries(optionsData)) {
-    //create new element
-    const option = document.createElement("option");
-    //value of the option is 1, 2, 3 
-    option.value = key;
-    //text visible
-    option.textContent = value;
-    //add oprion to select
-    selectElement.appendChild(option)
-}
+
+// const selectElement = document.getElementById('workType');
+
+// for (const[key, value] of Object.entries(optionsData)) {
+//     //create new element
+//     const option = document.createElement("option");
+//     //value of the option is 1, 2, 3 
+//     option.value = key;
+//     //text visible
+//     option.textContent = value;
+//     //add oprion to select
+//     selectElement.appendChild(option)
+// }
 
 
 // here is the submit event
@@ -66,7 +68,7 @@ if (!privacyCheckbox.checked){
         front: 15.30,
         rev: 33.60
     };
-    let totPrice = 0; 
+    let totPrice = 0.00; 
 
     //control price
 
@@ -126,4 +128,27 @@ if (userpromo !== "") {
     //clean the input
     userForm.reset();
 
+}
+
+
+
+// Call the function to generate the work options
+generateSelectOptions(optionsData, 'workType');
+
+// Function to generate select options dynamically
+function generateSelectOptions(optionsData, selectElementId) {
+    // Get the select element by ID
+    const selectElement = document.getElementById(selectElementId);
+
+    // Loop through the object and create option elements
+    for (const [key, value] of Object.entries(optionsData)) {
+        // Create a new option element
+        const option = document.createElement("option");
+        // Set the value of the option (1, 2, 3, etc.)
+        option.value = key;
+        // Set the visible text of the option
+        option.textContent = value;
+        // Append the option to the select element
+        selectElement.appendChild(option);
+    }
 }
