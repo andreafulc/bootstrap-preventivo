@@ -1,4 +1,4 @@
-// Take all the element
+// Take all the elements
 const userForm = document.getElementById("ticketForm");
 const userNameInput = document.getElementById("userName");
 const userSurnameInput = document.getElementById("userSurname");
@@ -6,149 +6,101 @@ const userMailInput = document.getElementById("mail");
 const userWorkTipeInput = document.getElementById("workType");
 const userInfoInput = document.getElementById("note");
 const userPromoInput = document.getElementById("userPromo");
-//take the element for print in page
+
+// Elements for displaying results
 const resultElement = document.getElementById("result");
 const privacyCheckbox = document.getElementById("flexCheckDefault");
 const codeElement = document.getElementById("error");
 
-
-//here is the dinamic select
-
+// Work types
 const optionsData = {
     "1": "Sviluppo backend",
     "2": "Sviluppo frontend",
-    "3": "analisi progettuale"
+    "3": "Analisi progettuale"
 };
 
+// Prices per hour
+const timeWork = 10;
+const priceList = {
+    "1": 20.50,  // Backend
+    "2": 15.30,  // Frontend
+    "3": 33.60   // Analysis
+};
 
+// Promo codes
+const promoCodes = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
 
-// const selectElement = document.getElementById('workType');
-
-// for (const[key, value] of Object.entries(optionsData)) {
-//     //create new element
-//     const option = document.createElement("option");
-//     //value of the option is 1, 2, 3 
-//     option.value = key;
-//     //text visible
-//     option.textContent = value;
-//     //add oprion to select
-//     selectElement.appendChild(option)
-// }
-
-
-// here is the submit event
+// Event listener
 userForm.addEventListener("submit", handleUserForm);
 
-//function
+// Function to handle form submission
 function handleUserForm(event) {
     event.preventDefault();
 
+    if (!validatePrivacy()) return;
 
-//Pryvacy check
+    const { username, usersurname, usermail, userwork, userinfo, userpromo } = getUserData();
+    let totalPrice = calculatePrice(userwork);
+    let finalPrice = applyDiscount(totalPrice, userpromo);
 
-if (!privacyCheckbox.checked){
-    alert(" ricorda di accettare la privacy policy prima di procedere");
-    return;
-}
+    resultElement.innerHTML = formatPrice(finalPrice);
 
-    const username = userNameInput.value;
-    const usersurname = userSurnameInput.value;
-    const usermail = userMailInput.value;
-    const userwork = userWorkTipeInput.value.split(","); //split for array
-    const userinfo = userInfoInput.value;
-    //trim remove spaces
-    const userpromo = userPromoInput.value.trim();
-
-    console.log(`${username} ${usersurname} ${usermail} ${userwork} ${userinfo} ${userpromo}`);
-    
-   //working hours as written in the quest are 10
-    const timeWork = 10;
-    const price = {
-        back: 20.50,
-        front: 15.30,
-        rev: 33.60
-    };
-    let totPrice = 0.00; 
-
-    //control price
-
-    if (userwork == "1") {
-        totPrice = timeWork * price.back;
-    } else if (userwork == "2") {
-        totPrice = timeWork * price.front;
-    } else if (userwork == "3") {
-        totPrice = timeWork * price.rev;
-    } else 
-        console.log("seleziona voce valida");
-
-    let officialPrice = parseFloat(totPrice.toFixed(2));
-        
-    console.log(`Costo totale: ${officialPrice}€`);
-
-    const promoCodes = ["YHDNU32", "JANJC63",  "PWKCN25", "SJDPO96", "POCIE24"]
-
-    let salePrice = officialPrice;
-    let message = `€ ${officialPrice}`;
-    //apply discount
-    
-if (userpromo !== "") {
-    if (promoCodes.includes(userpromo)) {
-        salePrice = officialPrice - (officialPrice * 0.25);
-        ultimateSalePrice = parseFloat(salePrice.toFixed(2));
-        console.log(ultimateSalePrice);
-        
-        message = `€ ${ultimateSalePrice}`;
-    } else {
-        codeElement.innerHTML = "Codice sconto errato";
-    
-    // // Auto-refresh the page after 2 seconds
-    // setTimeout(() => location.reload(), 2000);
-
-    // //stop the run
-    // return;
-        
-    }
-}
-    //result in page
-    //resultElement.innerHTML = message;
-
-    //now the price is bold with decimal small
-    let [integerPart, decimalPart] = message.split('.');
-
-    let formattedMessage = `<span class="fw-bold">${integerPart}</span>`;
-
-    if (decimalPart) {
-        formattedMessage += `<span class="small">.${decimalPart}</span>`;
-    }
-
-    resultElement.innerHTML = formattedMessage;
-
-
-
-    //clean the input
     userForm.reset();
-
 }
 
-
-
-// Call the function to generate the work options
-generateSelectOptions(optionsData, 'workType');
-
-// Function to generate select options dynamically
-function generateSelectOptions(optionsData, selectElementId) {
-    // Get the select element by ID
-    const selectElement = document.getElementById(selectElementId);
-
-    // Loop through the object and create option elements
-    for (const [key, value] of Object.entries(optionsData)) {
-        // Create a new option element
-        const option = document.createElement("option");
-        // Set the value of the option (1, 2, 3, etc.)
-        option.value = key;
-        // Set the visible text of the option
-        option.textContent = value;
-        // Append the option to the select element
-        selectElement.appendChild(option);
+// Validate privacy checkbox
+function validatePrivacy() {
+    if (!privacyCheckbox.checked) {
+        alert("Ricorda di accettare la privacy policy prima di procedere");
+        return false;
     }
+    return true;
 }
+
+// Get and clean user data
+function getUserData() {
+    return {
+        username: userNameInput.value,
+        usersurname: userSurnameInput.value,
+        usermail: userMailInput.value,
+        userwork: userWorkTipeInput.value,  // Directly gets selected value
+        userinfo: userInfoInput.value.trim(),
+        userpromo: userPromoInput.value.trim()
+    };
+}
+
+// Calculate price based on work type
+function calculatePrice(userwork) {
+    return timeWork * (priceList[userwork] || 0);
+}
+
+// Apply discount if promo code is valid
+function applyDiscount(price, userpromo) {
+    if (userpromo !== "" && promoCodes.includes(userpromo)) {
+        return parseFloat((price * 0.75).toFixed(2));
+    } else if (userpromo !== "") {
+        codeElement.innerHTML = "Codice sconto errato";
+    }
+    return price;
+}
+
+// Format price display
+function formatPrice(price) {
+    let formattedPrice = price.toFixed(2);
+    let [integerPart, decimalPart] = formattedPrice.split('.');
+    return `<span class="fw-bold">${integerPart}</span><span class="small">.${decimalPart}</span>`;
+}
+
+// Generate select options dynamically
+function generateSelectOptions(optionsData, selectElementId) {
+    const selectElement = document.getElementById(selectElementId);
+    Object.entries(optionsData).forEach(([key, value]) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = value;
+        selectElement.appendChild(option);
+    });
+}
+
+// Call function to populate select
+generateSelectOptions(optionsData, 'workType');
